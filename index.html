@@ -1,13 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue + TS</title>
+    <meta name="description" content="Trebound Corporate Travel Platform - Transform your business travel experience" />
+    <title>Trebound - Corporate Travel Platform</title>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/src/assets/main.css" as="style">
+    <link rel="preload" href="/src/style.css" as="style">
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- Add a loading state -->
+      <div id="loading" style="display: flex; justify-content: center; align-items: center; height: 100vh; background: #f8fafc;">
+        <div style="text-align: center;">
+          <div style="border: 4px solid #f3f3f3; border-top: 4px solid #ff6b35; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+          <p style="margin-top: 20px; color: #2d3748; font-family: system-ui, -apple-system, sans-serif;">Loading Trebound...</p>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </body>
 </html>

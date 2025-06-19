@@ -14,13 +14,26 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: true,
+    minify: 'terser',
     rollupOptions: {
-      external: [],
       output: {
         manualChunks: {
-          'marked': ['marked']
+          'vue': ['vue'],
+          'marked': ['marked'],
+          'dompurify': ['dompurify']
         }
       }
+    },
+    chunkSizeWarningLimit: 1000
+  },
+  optimizeDeps: {
+    include: ['vue', 'marked', 'dompurify']
+  },
+  server: {
+    port: 3000,
+    host: true,
+    fs: {
+      strict: true
     }
   }
 })
