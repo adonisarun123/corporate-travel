@@ -21,7 +21,7 @@ onMounted(() => {
     <Navigation />
     
     <!-- Main Content -->
-    <main class="w-full m-0 p-0">
+    <main class="w-full m-0 pt-16">
       <!-- Content Sections -->
       <div class="w-full m-0 p-0">
         <HeroSection />
@@ -49,6 +49,7 @@ onMounted(() => {
 
 :root {
   --app-height: 100%;
+  --nav-height: 4rem;
 }
 
 html {
@@ -64,6 +65,7 @@ body {
   min-height: var(--app-height);
   margin: 0;
   padding: 0;
+  padding-top: var(--nav-height);
   overflow-x: hidden;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
