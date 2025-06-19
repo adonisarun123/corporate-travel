@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { marked } from 'marked'
+import DOMPurify from 'dompurify'
 import TableOfContents from './TableOfContents.vue'
 import SearchContent from './SearchContent.vue'
 import AccordionSection from './AccordionSection.vue'
@@ -11,6 +12,12 @@ marked.setOptions({
   breaks: true,
   headerIds: true,
   mangle: false
+})
+
+// Configure DOMPurify
+DOMPurify.setConfig({
+  ALLOWED_TAGS: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'a', 'strong', 'em', 'code', 'pre', 'blockquote', 'table', 'thead', 'tbody', 'tr', 'th', 'td'],
+  ALLOWED_ATTR: ['href', 'target', 'rel', 'class', 'id']
 })
 
 const markdownContent = ref('')
@@ -56,7 +63,8 @@ onMounted(async () => {
   try {
     const response = await fetch('/COMPREHENSIVE_CORPORATE_TRAVEL_TREBOUND_STRATEGIC_BUSINESS_DOCUMENT.md')
     markdownContent.value = await response.text()
-    parsedContent.value = marked(markdownContent.value)
+    // Sanitize HTML after markdown conversion
+    parsedContent.value = DOMPurify.sanitize(marked(markdownContent.value))
     processMarkdownIntoSections(markdownContent.value)
   } catch (error) {
     console.error('Error loading markdown content:', error)
@@ -66,10 +74,10 @@ onMounted(async () => {
 const accordionItems = computed(() => 
   sections.value.map(section => ({
     title: section.title,
-    content: marked(section.content),
+    content: DOMPurify.sanitize(marked(section.content)),
     subsections: section.subsections.map(sub => ({
       title: sub.title,
-      content: marked(sub.content)
+      content: DOMPurify.sanitize(marked(sub.content))
     }))
   }))
 )

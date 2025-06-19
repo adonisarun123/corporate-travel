@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import DOMPurify from 'dompurify'
 
 const props = defineProps<{
   content: string
@@ -8,6 +9,17 @@ const props = defineProps<{
 const searchQuery = ref('')
 const searchResults = ref<Array<{ text: string; index: number }>>([])
 const currentResultIndex = ref(-1)
+
+const sanitizeAndHighlight = (text: string, query: string) => {
+  const highlighted = text.replace(
+    new RegExp(query, 'gi'),
+    match => `<mark class='bg-orange/20 px-1 rounded'>${match}</mark>`
+  )
+  return DOMPurify.sanitize(highlighted, {
+    ALLOWED_TAGS: ['mark'],
+    ALLOWED_ATTR: ['class']
+  })
+}
 
 const search = () => {
   if (!searchQuery.value.trim()) {
@@ -99,10 +111,7 @@ watch(searchQuery, () => {
         class="p-2 rounded cursor-pointer hover:bg-orange/5"
         @click="currentResultIndex = index"
       >
-        <div class="text-sm" v-html="result.text.replace(
-          new RegExp(searchQuery, 'gi'),
-          match => `<mark class='bg-orange/20 px-1 rounded'>${match}</mark>`
-        )"></div>
+        <div class="text-sm" v-html="sanitizeAndHighlight(result.text, searchQuery)"></div>
       </div>
     </div>
   </div>
