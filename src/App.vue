@@ -17,13 +17,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen w-full overflow-x-hidden">
     <Navigation />
     
     <!-- Main Content -->
-    <main>
+    <main class="w-full">
       <!-- Content Sections -->
-      <div>
+      <div class="w-full">
         <HeroSection />
         <MarketAnalysis />
         <FinancialProjections />
@@ -38,18 +38,28 @@ onMounted(() => {
 </template>
 
 <style>
+/* Reset default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   width: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
 #app {
   width: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
+/* Animation classes */
 .fade-in {
   animation: fadeIn 0.5s ease-out forwards;
 }

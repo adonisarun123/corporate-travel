@@ -1,9 +1,9 @@
 <template>
-  <section class="bg-gradient-to-br from-[#FF7043] to-[#FF8A65] py-36 relative overflow-hidden">
-    <!-- Animated background elements -->
-    <div class="absolute inset-0 overflow-hidden">
+  <section class="relative w-full bg-gradient-to-br from-[#FF7043] to-[#FF8A65] py-36 overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 w-full h-full overflow-hidden">
       <div v-for="i in 5" :key="i" 
-           class="floating-bubble"
+           class="floating-bubble absolute"
            :style="{
              '--delay': `${i * 2}s`,
              '--size': `${100 + i * 20}px`,
@@ -12,37 +12,44 @@
       </div>
     </div>
 
+    <!-- Content Container -->
     <div class="container mx-auto px-4 relative z-10">
       <div class="text-center max-w-4xl mx-auto">
-        <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 fade-in glow-text animate-title">
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 fade-in glow-text">
           Revolutionize Corporate Travel
         </h1>
-        <p class="text-xl md:text-2xl text-white/90 mb-12 slide-in-left animate-description">
+        <p class="text-xl md:text-2xl text-white/90 mb-12 slide-in-left">
           Transform your business travel experience with our innovative platform that combines 
           efficiency, cost savings, and seamless management.
         </p>
-        <div class="flex justify-center gap-4 mb-16">
-          <button class="primary-button bg-white text-[#FF7043] px-8 py-3 rounded-lg font-semibold hover:bg-white/90 transition-all transform hover:scale-105 hover:shadow-lg">
+
+        <!-- CTA Buttons -->
+        <div class="flex justify-center gap-6 mb-16">
+          <button class="px-8 py-3 bg-white text-[#FF7043] rounded-lg font-semibold hover:bg-opacity-90 transition-all transform hover:scale-105">
             Learn More
           </button>
-          <button class="secondary-button bg-[#E64A19] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#D84315] transition-all transform hover:scale-105 hover:shadow-lg">
+          <button class="px-8 py-3 bg-[#FF5722] text-white rounded-lg font-semibold hover:bg-opacity-90 transition-all transform hover:scale-105">
             Get Started
           </button>
         </div>
 
-        <!-- Stats -->
+        <!-- Stats Grid -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div v-for="(stat, index) in stats" 
-               :key="stat.value"
-               class="stat-card glass bg-white/10 p-6 rounded-xl text-white slide-in-left hover:bg-white/15 transition-all transform hover:scale-105 hover:shadow-xl backdrop-blur-lg cursor-pointer"
-               :style="{ 'animation-delay': `${index * 100}ms` }"
-               @mouseenter="startCount(index)">
-            <div class="text-3xl font-bold mb-2 text-white">
-              <span>{{ stat.prefix }}</span>
-              <span>{{ stat.displayValue }}</span>
-              <span>{{ stat.suffix }}</span>
-            </div>
-            <div class="text-white/90 font-medium">{{ stat.label }}</div>
+          <div class="glass bg-white/10 p-6 rounded-xl text-white slide-in-left hover:bg-white/15 transition-all backdrop-blur-lg border border-white/10">
+            <div class="text-3xl font-bold mb-2">$728B</div>
+            <div class="text-white/90">Business Travel Market</div>
+          </div>
+          <div class="glass bg-white/10 p-6 rounded-xl text-white slide-in-left hover:bg-white/15 transition-all backdrop-blur-lg border border-white/10" style="animation-delay: 100ms;">
+            <div class="text-3xl font-bold mb-2">15.2%</div>
+            <div class="text-white/90">Growth Rate</div>
+          </div>
+          <div class="glass bg-white/10 p-6 rounded-xl text-white slide-in-left hover:bg-white/15 transition-all backdrop-blur-lg border border-white/10" style="animation-delay: 200ms;">
+            <div class="text-3xl font-bold mb-2">30%</div>
+            <div class="text-white/90">Cost Reduction</div>
+          </div>
+          <div class="glass bg-white/10 p-6 rounded-xl text-white slide-in-left hover:bg-white/15 transition-all backdrop-blur-lg border border-white/10" style="animation-delay: 300ms;">
+            <div class="text-3xl font-bold mb-2">24/7</div>
+            <div class="text-white/90">Support Available</div>
           </div>
         </div>
       </div>
@@ -111,9 +118,7 @@ onMounted(() => {
 }
 
 .glow-text {
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.4),
-               0 0 40px rgba(255, 255, 255, 0.3),
-               0 0 60px rgba(255, 255, 255, 0.2);
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }
 
 .primary-button, .secondary-button {
@@ -166,12 +171,13 @@ onMounted(() => {
   position: absolute;
   width: var(--size);
   height: var(--size);
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), transparent);
   border-radius: 50%;
   left: var(--start-x);
   bottom: -100px;
   animation: float 15s ease-in-out infinite;
   animation-delay: var(--delay);
+  pointer-events: none;
 }
 
 @keyframes float {
@@ -179,18 +185,12 @@ onMounted(() => {
     transform: translateY(0) rotate(0deg);
     opacity: 0;
   }
-  10% {
+  50% {
+    transform: translateY(-60vh) rotate(180deg);
     opacity: 0.5;
   }
-  50% {
-    transform: translateY(-800px) rotate(180deg);
-    opacity: 0.2;
-  }
-  90% {
-    opacity: 0;
-  }
   100% {
-    transform: translateY(-1000px) rotate(360deg);
+    transform: translateY(-120vh) rotate(360deg);
     opacity: 0;
   }
 }
