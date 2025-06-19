@@ -39,24 +39,32 @@ onMounted(() => {
 
 <style>
 /* Reset default margins and padding */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+:root {
+  --app-height: 100%;
+}
+
+html {
   width: 100%;
-  height: 100%;
+  height: var(--app-height);
   margin: 0;
   padding: 0;
-  overflow-x-hidden;
+  overflow-x: hidden;
 }
 
 body {
-  min-height: 100vh;
+  width: 100%;
+  min-height: var(--app-height);
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,10 +72,10 @@ body {
 
 #app {
   width: 100%;
-  min-height: 100vh;
+  min-height: var(--app-height);
   margin: 0;
   padding: 0;
-  overflow-x-hidden;
+  overflow-x: hidden;
 }
 
 /* Animation classes */
