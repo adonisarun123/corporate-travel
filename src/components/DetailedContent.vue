@@ -109,19 +109,19 @@ const accordionItems = computed(() =>
 }
 
 .prose h1 {
-  @apply text-3xl font-bold mb-6 text-secondary;
+  @apply text-3xl font-bold mb-6 text-secondary-dark;
 }
 
 .prose h2 {
-  @apply text-2xl font-semibold mb-4 text-secondary-light;
+  @apply text-2xl font-semibold mb-4 text-secondary;
 }
 
 .prose h3 {
-  @apply text-xl font-medium mb-3 text-secondary-light;
+  @apply text-xl font-medium mb-3 text-secondary;
 }
 
 .prose p {
-  @apply text-secondary/80 mb-4 leading-relaxed;
+  @apply text-secondary-dark/80 mb-4 leading-relaxed;
 }
 
 .prose ul {
@@ -137,11 +137,11 @@ const accordionItems = computed(() =>
 }
 
 .prose a {
-  @apply text-primary hover:text-primary-dark transition-colors;
+  @apply text-primary-500 hover:text-primary-700 transition-colors;
 }
 
 .prose blockquote {
-  @apply border-l-4 border-primary/20 pl-4 italic my-4;
+  @apply border-l-4 border-primary-200 pl-4 italic my-4;
 }
 
 .prose code {
