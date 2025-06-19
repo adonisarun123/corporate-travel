@@ -5,6 +5,14 @@ import TableOfContents from './TableOfContents.vue'
 import SearchContent from './SearchContent.vue'
 import AccordionSection from './AccordionSection.vue'
 
+// Configure marked options
+marked.setOptions({
+  gfm: true,
+  breaks: true,
+  headerIds: true,
+  mangle: false
+})
+
 const markdownContent = ref('')
 const parsedContent = ref('')
 const sections = ref<Array<{ title: string; content: string; subsections: Array<{ title: string; content: string }> }>>([])
