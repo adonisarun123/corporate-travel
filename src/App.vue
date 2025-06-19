@@ -17,13 +17,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen w-full overflow-x-hidden">
+  <div class="min-h-screen w-full m-0 p-0 overflow-x-hidden">
     <Navigation />
     
     <!-- Main Content -->
-    <main class="w-full">
+    <main class="w-full m-0 p-0">
       <!-- Content Sections -->
-      <div class="w-full">
+      <div class="w-full m-0 p-0">
         <HeroSection />
         <MarketAnalysis />
         <FinancialProjections />
@@ -45,18 +45,29 @@ onMounted(() => {
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
-  width: 100%;
+  overflow-x-hidden;
+}
+
+body {
   min-height: 100vh;
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #app {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  overflow-x-hidden;
 }
 
 /* Animation classes */
@@ -120,5 +131,6 @@ body {
 
 .glass {
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 </style>

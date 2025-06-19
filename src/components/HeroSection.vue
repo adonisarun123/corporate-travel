@@ -1,5 +1,5 @@
 <template>
-  <section class="relative w-full bg-gradient-to-br from-[#FF7043] to-[#FF8A65] py-36 overflow-hidden">
+  <section class="full-bleed relative bg-gradient-to-br from-[#FF7043] to-[#FF8A65] py-36 overflow-hidden">
     <!-- Background Elements -->
     <div class="absolute inset-0 w-full h-full overflow-hidden">
       <div v-for="i in 5" :key="i" 
